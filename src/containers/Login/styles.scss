@@ -1,0 +1,86 @@
+$primary-color: #007bff;
+$background-gradient: linear-gradient(135deg, #007bff, #0056b3);
+$text-color: #ffffff;
+$card-bg: #ffffff;
+$input-bg: #f0f4f8;
+$button-bg: #ffb400;
+$button-hover: #e09e00;
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: $background-gradient;
+}
+
+.login-card {
+  background: $card-bg;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 350px;
+}
+
+.login-title {
+  color: $primary-color;
+  margin-bottom: 1rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-bottom: 1rem;
+
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+
+    input {
+      padding: 0.8rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      background: $input-bg;
+      font-size: 1rem;
+    }
+  }
+
+  .login-button {
+    background: $button-bg;
+    color: #000;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    &:hover {
+      background: $button-hover;
+    }
+  }
+}
+
+.register-link {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+
+  a {
+    color: $primary-color;
+    text-decoration: none;
+    font-weight: bold;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom'; // Tambahkan useNavigate
 
 import Leaderboard from '../../static/leaderboard.svg';
 import CampK12Logo from '../../static/camp-k-12-logo.svg';
 
 import './styles.scss';
-import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
   const [isShowMobileNav, setIsShowMobileNav] = useState(false);
+  const navigate = useNavigate(); // Gunakan useNavigate untuk navigasi
 
   return (
     <nav className="container">
@@ -17,19 +18,19 @@ const Navbar = () => {
       <div className={isShowMobileNav ? 'nav-items-mobile' : 'nav-items'}>
         <ul>
           <li>
-            <NavLink to="online-courses" activeClassName="selected">
-                Online Courses
+            <NavLink to="/online-courses" activeClassName="selected">
+              Online Courses
             </NavLink>
             <div />
           </li>
           <li>
-            <NavLink to="offline-camp" activeClassName="selected">
+            <NavLink to="/offline-camp" activeClassName="selected">
               Offline Camps
             </NavLink>
             <div />
           </li>
           <li>
-            <NavLink to="refer-n-earn" activeClassName="selected">
+            <NavLink to="/refer-n-earn" activeClassName="selected">
               Refer & Earn
             </NavLink>
             <div />
@@ -42,16 +43,16 @@ const Navbar = () => {
           <button>
             Free Trial
           </button>
-          <button>
+          <button onClick={() => navigate('/Login')}> 
             Log In
           </button>
         </div>
       </div>
       <button className="mobile-nav-button" onClick={() => setIsShowMobileNav(!isShowMobileNav)}>
-        {isShowMobileNav ? '🞩' : '☰'}  
+        {isShowMobileNav ? '🞩' : '☰'}
       </button>
     </nav>
-  )
-}
+  );
+};
 
 export default Navbar;
