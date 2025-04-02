@@ -124,7 +124,7 @@ def manage_payments():
     enrollmentid = st.number_input("Enrollment ID", min_value=0, step=1, key="payment_enrollmentid")
     amount = st.number_input("Amount", min_value=0.0, step=0.01, key="payment_amount")
     payment_method = st.text_input("Payment Method", key="payment_method")
-    payment_status = st.selectbox("Payment Status", ["Completed", "Not Completed"], key="payment_status")
+    payment_status = st.selectbox("Payment Status", ["Paid", "Unpaid"], key="payment_status")
     if st.button("Add Payment"):
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
@@ -148,9 +148,9 @@ def manage_payments():
         selected_payment_str = st.selectbox("Select Payment to Update", list(payment_options.keys()), key="update_payment_select")
         selected_payment = payment_options[selected_payment_str]
         new_enrollmentid = st.number_input("New Enrollment ID", value=selected_payment['enrollmentid'], key="update_payment_enrollmentid")
-        new_amount = st.number_input("New Amount", value=selected_payment['amount'], min_value=0.0, step=0.01, key="update_payment_amount")
+        new_amount = st.number_input("New Amount", value=float(selected_payment['amount']), min_value=0.0, step=0.01, key="update_payment_amount")
         new_payment_method = st.text_input("New Payment Method", value=selected_payment['payment_method'], key="update_payment_method")
-        new_payment_status = st.selectbox("New Payment Status", ["Completed", "Not Completed"], index=["Completed", "Not Completed"].index(selected_payment['payment_status']), key="update_payment_status")
+        new_payment_status = st.selectbox("New Payment Status", ["Paid", "Unpaid"], index=["Paid", "Unpaid"].index(selected_payment['payment_status']), key="update_payment_status")
         if st.button("Update Payment"):
             conn = get_connection()
             cursor = conn.cursor()
@@ -584,7 +584,7 @@ def manage_enrollments():
     else:
         st.error("No courses available.")
         courseid = 0
-    payment_status = st.selectbox("Payment Status", ["Completed", "Not Completed"], key="enroll_payment_status")
+    payment_status = st.selectbox("Payment Status", ["Paid", "Unpaid"], key="enroll_payment_status")
     if st.button("Add Enrollment"):
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
@@ -637,7 +637,7 @@ def manage_enrollments():
             new_courseid = course_mapping[new_course_str]
         else:
             new_courseid = selected_enrollment['courseid']
-        new_payment_status = st.selectbox("New Payment Status", ["Completed", "Not Completed"], index=["Completed", "Not Completed"].index(selected_enrollment['payment_status']), key="update_enrollment_status")
+        new_payment_status = st.selectbox("New Payment Status", ["Paid", "Unpaid"], index=["Paid", "Unpaid"].index(selected_enrollment['payment_status']), key="update_enrollment_status")
         if st.button("Update Enrollment"):
             conn = get_connection()
             cursor = conn.cursor()
