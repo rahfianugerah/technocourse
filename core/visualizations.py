@@ -4,7 +4,6 @@ import pandas as pd
 from core.database import get_connection
 
 def show_visualizations():
-    st.subheader("Visualizations")
     conn = get_connection()
     
     # Visualization 1: Courses per Category
