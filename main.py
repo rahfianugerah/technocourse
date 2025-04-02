@@ -63,7 +63,6 @@ def dashboard():
             st.session_state["logged_in"] = False
             st.session_state["username"] = ""
             st.success("Logged out successfully!")
-            # Optionally, you can force a UI update here if needed.
     elif choice == "📚 Manage Courses":
         manage_courses()
     elif choice == "📄 Manage Course Materials":
@@ -82,17 +81,19 @@ def dashboard():
         show_visualizations()
 
 def main():
-    st.title("TechnoCourse Management System")
+    st.title("Technocourse.com Management System")
+    st.image("assets/technocourse-bg.png", use_container_width=False)
     create_users_table()  # Ensure the users table exists
 
-    # Render dashboard if logged in, otherwise show login/register forms.
+    # Render dashboard if logged in, otherwise show login/register tabs.
     if st.session_state["logged_in"]:
         dashboard()
     else:
-        auth_option = st.radio("Select Option", ["Login", "Register"])
-        if auth_option == "Login":
+        # Use tabs for separate Login and Register forms
+        tab1, tab2 = st.tabs(["Login", "Register"])
+        with tab1:
             login_view()
-        else:
+        with tab2:
             register_view()
 
 if __name__ == "__main__":
