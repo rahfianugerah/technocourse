@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 20, 2025 at 04:41 AM
+-- Generation Time: Apr 02, 2025 at 06:48 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -48,7 +48,10 @@ INSERT INTO `courses` (`courseid`, `instructorid`, `title`, `description`, `cate
 (2, 1, 'Web Application Development', 'Learn how to create web applications using HTML, CSS, and JavaScript.', 'IT', 2000000.00, 40, '2025-05-01 08:00:00', '2025-07-31 17:00:00'),
 (3, 2, 'Fundamentals of Cybersecurity', 'Understand basic concepts and techniques to protect against cyber attacks.', 'IT', 1800000.00, 45, '2025-04-15 08:00:00', '2025-07-15 17:00:00'),
 (4, 3, 'SQL Database Management', 'An intensive course to master SQL and database management.', 'IT', 1700000.00, 35, '2025-03-20 08:00:00', '2025-06-20 17:00:00'),
-(5, 3, 'Data Science and Machine Learning', 'Learn data analysis and apply machine learning algorithms.', 'IT', 2500000.00, 30, '2025-06-01 08:00:00', '2025-09-01 17:00:00');
+(5, 3, 'Data Science and Machine Learning', 'Learn data analysis and apply machine learning algorithms.', 'IT', 2500000.00, 30, '2025-06-01 08:00:00', '2025-09-01 17:00:00'),
+(6, 3, 'How to Basic: AWS', 'AWS Basic Knowledge Training', 'Cloud', 500000.00, 25, '2025-04-02 20:30:00', '2025-04-02 21:30:00'),
+(7, 1, 'Azure Hero', 'Learn using azure', 'Cloud', 1500000.00, 20, '2025-04-02 09:45:00', '2025-04-02 20:28:00'),
+(8, 1, 'Hello World!', 'Learn Programming the Easiest Ways', 'Programming', 200000.00, 15, '2025-04-04 11:45:00', '2025-04-02 14:30:00');
 
 -- --------------------------------------------------------
 
@@ -153,11 +156,9 @@ CREATE TABLE `payments` (
 --
 
 INSERT INTO `payments` (`paymentid`, `enrollmentid`, `payment_date`, `amount`, `payment_method`, `payment_status`) VALUES
-(1, 1, '2025-03-25 09:30:00', 1500000.00, 'Bank Transfer', 'Paid'),
 (2, 2, '2025-03-26 11:00:00', 1500000.00, 'Credit Card', 'Paid'),
 (3, 4, '2025-03-28 12:30:00', 1800000.00, 'Bank Transfer', 'Paid'),
 (4, 5, '2025-03-29 13:30:00', 1700000.00, 'Debit Card', 'Paid'),
-(5, 7, '2025-03-31 10:00:00', 1800000.00, 'Bank Transfer', 'Paid'),
 (6, 8, '2025-04-01 10:30:00', 1700000.00, 'Credit Card', 'Paid');
 
 -- --------------------------------------------------------
@@ -206,12 +207,35 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`studentid`, `firstname`, `lastname`, `email`, `registration_date`) VALUES
-(1, 'Andrew', 'Smith', 'andrew.smith@technocourse.com', '2025-02-10 09:00:00'),
+(1, 'Andrew', 'Smith', 'andrew.smith@gmail', '2025-02-10 09:00:00'),
 (2, 'Sarah', 'Williams', 'sarah.williams@technocourse.com', '2025-02-12 10:00:00'),
 (3, 'David', 'Miller', 'david.miller@technocourse.com', '2025-02-15 11:30:00'),
 (4, 'Laura', 'Wilson', 'laura.wilson@technocourse.com', '2025-02-18 14:00:00'),
 (5, 'Mark', 'Taylor', 'mark.taylor@technocourse.com', '2025-02-20 15:30:00'),
 (6, 'Olivia', 'Anderson', 'olivia.anderson@technocourse.com', '2025-02-22 16:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `username`, `password`, `email`) VALUES
+(1, 'rahfia', 'admin123', 'rahfia@technocourse.com'),
+(2, 'admin', 'admin', 'admin@technocourse.com'),
+(3, 'fajri', 'fajri123', 'fajri@technocourse.com'),
+(4, 'zikra', 'zikra123', 'zikra@technocourse.com');
 
 --
 -- Indexes for dumped tables
@@ -269,6 +293,13 @@ ALTER TABLE `students`
   ADD UNIQUE KEY `email` (`email`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -276,7 +307,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `courseid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `courseid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `course_materials`
@@ -294,7 +325,7 @@ ALTER TABLE `enrollments`
 -- AUTO_INCREMENT for table `instructors`
 --
 ALTER TABLE `instructors`
-  MODIFY `instructorid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `instructorid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `payments`
@@ -313,6 +344,12 @@ ALTER TABLE `reviews`
 --
 ALTER TABLE `students`
   MODIFY `studentid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
