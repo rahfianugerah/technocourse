@@ -40,6 +40,7 @@ def register_view():
 
 def dashboard():
     # Sidebar for navigation (without logout)
+    st.sidebar.image("assets/technocourse-logo.png", use_container_width=False)
     st.sidebar.title(f"Welcome, {st.session_state['username']} 👋")
     pages = [
         "🏠 Home", 
@@ -81,7 +82,7 @@ def dashboard():
         show_visualizations()
 
 def main():
-    st.title("Technocourse.com Management System")
+    st.markdown("<h1><span style='color: purple;'>Techno</span>course.com Management System</h1>", unsafe_allow_html=True)
     st.image("assets/technocourse-bg.png", use_container_width=False)
     create_users_table()  # Ensure the users table exists
 
